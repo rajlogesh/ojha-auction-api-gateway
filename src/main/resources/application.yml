@@ -1,0 +1,22 @@
+server:
+  port: 9090
+
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: productModule
+        uri: lb://OJHA-AUCTION-PRODUCTSERVICE
+        predicates:
+        - Path=/e-auction/api/v1/product/**
+      - id: bidModule
+        uri: lb://OJHA-AUCTION-BIDMGMTERVICE
+        predicates:
+        - Path=/e-auction/api/v1/bid/**
+  application:
+    name: ojha-stkmrkt-api-gateway 
+        
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8081/eureka
